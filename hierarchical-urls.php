@@ -16,8 +16,14 @@ class Hierarchical_Urls {
             add_filter( 'term_link', array( $this, 'term_link' ), 10, 3 );
             add_filter( 'rewrite_rules_array', array( $this, 'rewrite_rules_array' ) );
             add_action( 'wp_loaded', array( $this, 'flush_rules' ) );
-            //add_action( 'wp_loaded', array( $this, 'debug_rules' ), 999 );
+            //add_action( 'wp_loaded', array( $this, 'debug_rules' ) );
         }
+    }
+
+    function debug_rules() {
+        global $wp_query, $wp_rewrite;
+        print_r( $wp_query );
+        print_r( $wp_rewrite->rewrite_rules() );
     }
 
     function flush_rules() {
@@ -31,15 +37,6 @@ class Hierarchical_Urls {
                 break;
             }
         }
-    }
-
-    function debug_rules() {
-        global $wp, $wp_rewrite;
-        print_r($wp_rewrite->rewrite_rules());
-        if ( ! empty( $wp->matched_rule ) && ! empty( $wp_rewrite->rules ) )
-            echo $wp->matched_rule . ' | ' . $wp_rewrite->rules[ $wp->matched_rule ];
-        print_r( $wp_rewrite );
-        exit();
     }
 
     function post_link( $permalink, $post, $leavename ) {
@@ -130,15 +127,15 @@ class Hierarchical_Urls {
 
             // Term
             $rules[$term_path_match_str . '/?$'] =
-                'index.php?term=$matches[1]';
+                'index.php?taxonomy=' . $args['taxonomy_name'] . '&term=$matches[1]';
 
             // Feeds
             $rules[$term_path_match_str . '/' . $feed_sufix] =
-                'index.php?term=$matches[1]&feed=atom';
+                'index.php?taxonomy=' . $args['taxonomy_name'] . '&term=$matches[1]&feed=atom';
 
             // Pagination
             $rules[$term_path_match_str . '/' . $page_sufix] =
-                'index.php?term=$matches[1]&paged=$matches[2]';
+                'index.php?taxonomy=' . $args['taxonomy_name'] . '&term=$matches[1]&paged=$matches[2]';
 
             $subrules = $this->get_rules_tree( array(
                 'parent' => $term->term_id,
@@ -159,7 +156,7 @@ class Hierarchical_Urls {
         foreach ( $this->get_entities() as $e ) {
 
             // Post Type
-            $rules[$e['post_type']->name . '/?'] =
+            $rules[$e['post_type']->name . '/?$'] =
                 'index.php?post_type=' . $e['post_type']->name;
 
             foreach( $e['taxonomies'] as $t ) {
