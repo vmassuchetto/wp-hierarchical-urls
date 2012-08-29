@@ -49,6 +49,7 @@ Upload the plugin to your `wp-content/plugins` and activate it.
 == TODO ==
 
 * Flush rules on term creating
+* Reflect post URL in the admin slug edit section
 
 == Changelog ==
 
