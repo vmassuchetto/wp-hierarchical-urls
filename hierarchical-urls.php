@@ -11,13 +11,18 @@
 class Hierarchical_Urls {
 
     function Hierarchical_Urls() {
+
+        add_filter( 'post_link', array( $this, 'post_link' ), 10, 3 );
+        add_filter( 'term_link', array( $this, 'term_link' ), 10, 3 );
+
         if ( ! is_admin() ) {
-            add_filter( 'post_link', array( $this, 'post_link' ), 10, 3 );
-            add_filter( 'term_link', array( $this, 'term_link' ), 10, 3 );
             add_filter( 'rewrite_rules_array', array( $this, 'rewrite_rules_array' ) );
             add_action( 'wp_loaded', array( $this, 'flush_rules' ) );
-            //add_action( 'wp_loaded', array( $this, 'debug_rules' ) );
+
         }
+
+        //add_action( 'wp_loaded', array( $this, 'debug_rules' ) );
+
     }
 
     function debug_rules() {
