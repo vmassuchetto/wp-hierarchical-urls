@@ -8,7 +8,7 @@ Stable tag: 0.01
 License: GPLv2 or later
 
 Will generate hierarchical URLs like
-`category-name/subcategory-name/subsubcategory-name/post-slug` for all post
+<code>category-name/subcategory-name/subsubcategory-name/post-slug</code> for all post
 types and taxonomies.
 
 == Description ==
@@ -24,7 +24,7 @@ for posts:
   - Indian
   - Italian
 
-By default, their URLs will be `category/%category-name%`. Activating this
+By default, their URLs will be <code>category/%category-name%</code>. Activating this
 plugin will end up in URLs like:
 
 * Music: `music`
@@ -35,12 +35,7 @@ plugin will end up in URLs like:
   - Italian: `food/italian`
 
 For posts inside the Italian food category, for example, the URL will be
-`food/italian/%postname%`.
-
-Posts and categories won't have any URL prefix like the default
-`category/$category%` default permalink structure, but other post types and
-taxonomies will have it. If there's a "company" post type, the URLs will be
-`company` for archive pages and `company/%postname%` for a single post.
+<code>food/italian/%postname%</code>.
 
 == Installation ==
 
