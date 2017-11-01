@@ -1,11 +1,11 @@
 <?php
 /*
  * Plugin Name: Hierarchical URLs
- * Plugin URI: http://vinicius.soylocoporti.org.br
+ * Plugin URI: https://github.com/vmassuchetto/wp-hierarchical-urls/edit/
  * Description: Will generate hierarchical URLs like <code>category-name/subcategory-name/subsubcategory-name/post-slug</code> for all post types and taxonomies.
  * Version: 0.01
  * Author: Vinicius Massuchetto
- * Author URI: http://vinicius.soylocoporti.org.br
+ * Author URI: https://github.com/vmassuchetto/wp-hierarchical-urls/edit/
  */
 
 class Hierarchical_Urls {
